@@ -37,16 +37,11 @@ function hoursWorkedOnDate(workDate){
     let fromWork = this.timeOutEvents.find((e) => e.date === workDate)
     return (fromWork.hour - atWork.hour)/100
 }
-// function wagesEarnedOnDate(workDate){
-//     let wage = hoursWorkedOnDate.call(this,workDate)* this.payPerHour
-//     return(wage.toString())
-//     }
 let wagesEarnedOnDate = function(dateSought){
     let wage = hoursWorkedOnDate.call(this, dateSought)
         * this.payPerHour
     return parseFloat(wage.toString())
 }
-
 function findEmployeeByFirstName(srcArray, firstName) {
         return srcArray.find(function(c){
           return c.firstName === firstName
@@ -57,11 +52,10 @@ function findEmployeeByFirstName (srcArray, firstName) {
       return record.firstName === firstName
     })
   }
-let calculatePayroll = function(arrayOfEmployeeRecords){
-    return arrayOfEmployeeRecords.reduce(function(memo, rec){
-        return allWagesFor.call(rec)+memo}, 0)
+function calculatePayroll (arrayOfEmployeeRecords){
+    return arrayOfEmployeeRecords.reduce(function(acc, record){
+        return allWagesFor.call(record)+acc}, 0)
 }
-
 //   function calculatePayroll(recordsArray){
 //     return recordsArray.reduce(function(acc, record){
 //         return acc+ allWagesFor.call(record)
@@ -75,7 +69,6 @@ let calculatePayroll = function(arrayOfEmployeeRecords){
 //  As a result, the lessons for this function will pass *and* it will be available
 //  for you to use if you need it!
 //  */
-
 const allWagesFor = function () {
     const eligibleDates = this.timeInEvents.map(function (e) {
         return e.date
